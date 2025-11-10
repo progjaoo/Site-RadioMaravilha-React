@@ -5,8 +5,12 @@ import HeroCarousel from "@/components/HeroCarousel";
 import videoStudio from "@/assets/videoStudio.mp4";
 import appMockup from "@/assets/anuncioApp.png";
 import bannerAnuncio from '@/assets/anuncio.png'
+
+
 const Home = () => {
+
   return (
+
     <div className="min-h-screen bg-background">
       <Header />
       <WhatsAppButton />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { ChevronDown, ChevronUp, Share2, Play, Pause } from "lucide-react";
+import { ChevronDown, ChevronUp, Share2, Play, Pause, X } from "lucide-react";
 import { radioService } from "@/lib/radioService";
 import capaAlbum from "@/assets/capaAlbum.png";
 
@@ -13,50 +13,31 @@ const PlayerGlobal = () => {
   const [musica, setMusica] = useState("Rádio Maravilha 89.1 FM");
   const [artista, setArtista] = useState("");
   const [capa, setCapa] = useState(capaAlbum);
-  const [isActive, setIsActive] = useState(radioService.getGlobalPlayerActive()); 
+  const [isActive, setIsActive] = useState(radioService.getGlobalPlayerActive());
 
   const isOuvirAoVivo = location.pathname === "/ouvir-ao-vivo";
 
   useEffect(() => {
-    // se o player global for ativado depois, escutamos mudanças de playing
     const unsubscribe = radioService.subscribe((playing) => {
       setIsPlaying(playing);
-
-      // Se o player começar a tocar, ativa o global automaticamente
       if (playing) {
         radioService.activateGlobalPlayer();
         setIsActive(true);
       }
     });
-
-    return () => {
-      if (typeof unsubscribe === "function") unsubscribe();
-    };
-  }, []);
-  useEffect(() => {
-    let mounted = true;
-
-    const unsubscribe = radioService.subscribe((playing) => {
-      if (mounted) setIsPlaying(playing);
-    });
-
-    return () => {
-      mounted = false;
-      if (typeof unsubscribe === "function") unsubscribe();
-    };
+    return unsubscribe;
   }, []);
 
   useEffect(() => {
-    let mounted = true;
-    let interval: NodeJS.Timeout;
+    if (!isActive) return;
 
+    let mounted = true;
     const fetchData = async () => {
       try {
         const res = await fetch(API_URL);
         const data = await res.json();
 
         if (!mounted) return;
-
         if (
           data.musica_atual.includes("Radio Maravilha") ||
           data.musica_atual.includes("891 Radio Maravilha FM")
@@ -76,13 +57,12 @@ const PlayerGlobal = () => {
     };
 
     fetchData();
-    interval = setInterval(fetchData, 30000);
-
+    const interval = setInterval(fetchData, 30000);
     return () => {
       mounted = false;
       clearInterval(interval);
     };
-  }, [location.pathname]);
+  }, [isActive]);
 
   const togglePlay = () => radioService.toggle();
 
@@ -90,25 +70,25 @@ const PlayerGlobal = () => {
     const shareData = {
       title: "Rádio Maravilha 89.1 FM",
       text: "Ouça agora a Rádio Maravilha ao vivo!",
-      url: 'https://89maravilhafm.com/site/pages/home/',
+      url: "https://89maravilhafm.com/site/pages/home/",
     };
 
     if (navigator.share) {
-      navigator
-        .share(shareData)
-        .catch((err) => console.error("Erro ao compartilhar:", err));
+      navigator.share(shareData).catch((err) => console.error(err));
     } else {
       navigator.clipboard.writeText(shareData.url);
       alert("🔗 Link copiado para a área de transferência!");
     }
   };
-  
-  if (!isActive || isOuvirAoVivo) return null;
-  
 
-  if (isOuvirAoVivo) {
-    return <div className="hidden" />; 
-  }
+  // 🔹 NOVO: botão “X” fecha e reseta o player global
+  const handleClose = () => {
+    radioService.pause(); // pausa o áudio
+    radioService.resetGlobalPlayer(); // reseta flag global e localStorage
+    setIsActive(false); // remove da tela
+  };
+
+  if (!isActive || isOuvirAoVivo) return null;
 
   return (
     <div
@@ -130,10 +110,7 @@ const PlayerGlobal = () => {
 
         <div className="flex-1 flex justify-center">
           {!isExpanded && (
-            <button
-              onClick={togglePlay}
-              className="bg-transparent border-none hover:scale-100 transition-transform"
-            >
+            <button onClick={togglePlay} className="hover:scale-110 transition-transform">
               {isPlaying ? (
                 <Pause size={24} fill="white" />
               ) : (
@@ -149,6 +126,10 @@ const PlayerGlobal = () => {
               <Share2 size={20} />
             </button>
           )}
+          {/* 🔹 NOVO BOTÃO DE FECHAR */}
+          <button onClick={handleClose} title="Fechar player">
+            <X size={22} />
+          </button>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             title={isExpanded ? "Minimizar" : "Expandir"}
@@ -167,7 +148,9 @@ const PlayerGlobal = () => {
             className="w-32 h-32 rounded-2xl shadow-lg mb-1 object-cover"
           />
           <h3 className="text-lg font-bold text-center">{musica}</h3>
-          {artista && <p className="text-sm text-gray-300 text-center mb-0">{artista}</p>}
+          {artista && (
+            <p className="text-sm text-gray-300 text-center mb-1">{artista}</p>
+          )}
           <button
             onClick={togglePlay}
             className="w-16 h-16 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all hover:scale-110"

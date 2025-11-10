@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,24 +9,36 @@ import OuvirAoVivo from "./pages/OuvirAoVivo";
 import AssistirAoVivo from "./pages/AssistirAoVivo";
 import NotFound from "./pages/NotFound";
 import PlayerGlobal from "./components/PlayerGlobal";
+import { radioService } from "@/lib/radioService";
 
 const queryClient = new QueryClient();
 
-const Layout = () => (
-  <>
-    <Outlet />
-    <PlayerGlobal />
-  </>
-);
+const Layout = () => {
+  const [playerAtivo, setPlayerAtivo] = useState(radioService.getGlobalPlayerActive());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const ativo = radioService.getGlobalPlayerActive();
+      if (ativo !== playerAtivo) setPlayerAtivo(ativo);
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [playerAtivo]);
+
+  return (
+    <>
+      <Outlet />
+      {playerAtivo && <PlayerGlobal />}
+    </>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      {/* PlayerGlobal fora das rotas */}
 
-      {/* Suas rotas normais */}
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />

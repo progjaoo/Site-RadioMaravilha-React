@@ -3,13 +3,8 @@ class RadioService {
   private isPlaying = false;
   private audio: HTMLAudioElement | null = null;
   private audioUrl = "https://stm19.srvstm.com:7080/stream";
-
-  // 🔸 Flag que indica se o PlayerGlobal já foi ativado
   private isGlobalPlayerActive = false;
 
-  // =============================
-  // 🔹 Áudio
-  // =============================
   private getAudio(): HTMLAudioElement {
     if (!this.audio) {
       this.audio = new Audio(this.audioUrl);
@@ -17,9 +12,6 @@ class RadioService {
     return this.audio;
   }
 
-  // =============================
-  // 🔹 Estado e controle de áudio
-  // =============================
   getPlayingState() {
     return this.isPlaying;
   }
@@ -36,7 +28,7 @@ class RadioService {
     this.isPlaying = true;
     this.emit();
 
-    // 👉 Se começou a tocar, ativa o PlayerGlobal
+    // 🔹 Ativa o PlayerGlobal (fica salvo mesmo após mudar de rota)
     this.activateGlobalPlayer();
   }
 
@@ -58,17 +50,12 @@ class RadioService {
     this.listeners.forEach((cb) => cb(this.isPlaying));
   }
 
-  // =============================
-  // 🔹 Controle do PlayerGlobal
-  // =============================
-
-  // Ativa o PlayerGlobal e persiste essa informação
+  // 🔹 Controle global do PlayerGlobal
   activateGlobalPlayer() {
     this.isGlobalPlayerActive = true;
     localStorage.setItem("playerGlobalActive", "true");
   }
 
-  // Verifica se o PlayerGlobal já foi ativado
   getGlobalPlayerActive() {
     return (
       this.isGlobalPlayerActive ||
@@ -76,7 +63,6 @@ class RadioService {
     );
   }
 
-  // (Opcional) reseta o estado global — útil para testes ou logout
   resetGlobalPlayer() {
     this.isGlobalPlayerActive = false;
     localStorage.removeItem("playerGlobalActive");

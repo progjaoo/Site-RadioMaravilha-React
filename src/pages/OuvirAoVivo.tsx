@@ -76,19 +76,6 @@ useEffect(() => {
 
       <main className="pt-32 pb-12 min-h-screen">
         <div className="container mx-auto px-10 max-w-4x1">
-          <section className="py-10 md:py-12">
-            <a
-              target="_blank"
-              href="https://89maravilhafm.com/sorteio/"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={bannerAnuncio}
-                alt="App Maravilha FM"
-                className="w-full max-w-xl mx-auto cursor-pointer hover:opacity-90 transition"
-              />
-            </a>
-          </section>
 
           <Card className="p-8 md:p-12 shadow-card animate-fade-in">
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-foreground">
