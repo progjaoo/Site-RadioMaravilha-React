@@ -1,11 +1,11 @@
-import logoWhite from "@/assets/logo-white.png";
+import logoWhite from "@/assets/logoFooter.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground py-12">
+    <footer className="bg-primary text-primary-foreground py-5">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center space-y-6">
-          <img src={logoWhite} alt="89.1 Maravilha FM" className="h-20 w-20" />
+          <img src={logoWhite} alt="89.1 Maravilha FM" className="h-20 w-15" />
           
           <div className="text-center space-y-2">
             <p className="font-semibold">Rua Fernandes Tourinho, 487 - Savassi</p>

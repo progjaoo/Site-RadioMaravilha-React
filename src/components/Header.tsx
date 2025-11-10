@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Home, Headphones, Video, Youtube, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoHeader from "@/assets/89MaravilhaLogoHeader.png";
+
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,13 +31,13 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl md:text-3xl font-bold">
-              <span className="text-primary">89.</span>
-              <span className="text-foreground">maravilha</span>
-              <span className="text-xs md:text-sm text-muted-foreground ml-1">FM</span>
-            </div>
-          </Link>
+            <img
+              src={logoHeader}
+              alt="Logo Maravilha FM"
+              className="h-5 md:h-5 w-auto"
+            />
 
+          </Link>
           <nav className="hidden md:flex items-center space-x-2">
             <Link to="/">
               <Button
@@ -66,22 +68,22 @@ const Header = () => {
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <a
-              href="https://youtube.com"
+              href="https://www.youtube.com/@radio89maravilha"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-primary-light transition-colors"
             >
-              <Youtube size={24} />
+              <Youtube size={35} />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/radio89maravilha/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-primary-light transition-colors"
             >
-              <Instagram size={24} />
+              <Instagram size={33} />
             </a>
           </div>
         </div>

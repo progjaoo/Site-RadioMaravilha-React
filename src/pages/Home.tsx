@@ -2,10 +2,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import HeroCarousel from "@/components/HeroCarousel";
-import { Card } from "@/components/ui/card";
-import radioStudio from "@/assets/radio-studio.jpg";
-import appMockup from "@/assets/app-mockup.png";
-
+import videoStudio from "@/assets/videoStudio.mp4";
+import appMockup from "@/assets/anuncioApp.png";
+import bannerAnuncio from '@/assets/anuncio.png'
 const Home = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -21,19 +20,14 @@ const Home = () => {
         {/* Promotional Banner */}
         <section className="py-8 md:py-12">
           <div className="container mx-auto px-4">
-            <Card className="bg-gradient-primary p-8 md:p-12 text-center shadow-glow overflow-hidden relative">
-              <div className="relative z-10">
-                <h3 className="text-2xl md:text-4xl font-bold text-white mb-4">
-                  ESSA MARAVILHA PODE SER SUA!
-                </h3>
-                <p className="text-lg md:text-xl text-white mb-6">
-                  Inscreva-se no sorteio e concorra a prêmios incríveis
-                </p>
-                <button className="bg-white text-primary font-bold px-8 py-3 rounded-full text-lg hover:bg-gray-100 transition-colors">
-                  CLIQUE AQUI!
-                </button>
-              </div>
-            </Card>
+            <a target="_blank" href="https://89maravilhafm.com/sorteio/">
+                <img
+                  src={bannerAnuncio}
+                  alt="App Maravilha FM"
+                  className="w-1-- md:w-100 h-auto"
+                  
+                />
+            </a> 
           </div>
         </section>
 
@@ -63,11 +57,17 @@ const Home = () => {
                 </p>
               </div>
               <div className="animate-fade-in">
-                <img
-                  src={radioStudio}
-                  alt="Estúdio da Rádio Maravilha FM"
-                  className="rounded-xl shadow-card w-full h-auto"
-                />
+                <video
+                src={videoStudio}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="rounded-2xl shadow-lg w-full max-w-md mx-auto"
+              >
+                Seu navegador não suporta vídeos em HTML5.
+              </video>
+
               </div>
             </div>
           </div>
@@ -94,7 +94,8 @@ const Home = () => {
                 </h2>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                   <a
-                    href="#"
+                    target="_blank"
+                    href="https://apps.apple.com/br/app/89-maravilha-fm/id6748237407"
                     className="inline-block hover:opacity-80 transition-opacity"
                   >
                     <img
@@ -104,7 +105,8 @@ const Home = () => {
                     />
                   </a>
                   <a
-                    href="#"
+                    target="_blank"
+                    href="https://play.google.com/store/apps/details?id=com.claitonbarbosa.maravilhafmbh"
                     className="inline-block hover:opacity-80 transition-opacity"
                   >
                     <img

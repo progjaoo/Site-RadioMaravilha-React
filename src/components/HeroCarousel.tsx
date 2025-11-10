@@ -1,26 +1,18 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroBanner from "@/assets/hero-banner.jpg";
+import banner1 from "@/assets/banner1.png";
+import banner2 from "@/assets/banner2.png";
 
 const slides = [
   {
     id: 1,
-    image: heroBanner,
-    title: "Bem-vindo à 89.1 Maravilha FM",
-    subtitle: "Sua companhia diária com música, fé e esperança",
+    image: banner2,
+    link: "https://89maravilhafm.com/sorteio/",
   },
   {
     id: 2,
-    image: heroBanner,
-    title: "Participe dos Nossos Sorteios",
-    subtitle: "Concorra a prêmios incríveis todos os dias",
-  },
-  {
-    id: 3,
-    image: heroBanner,
-    title: "Ouça Nossa Programação",
-    subtitle: "24 horas de música e mensagens que transformam vidas",
+    image: banner1,
   },
 ];
 
@@ -41,34 +33,44 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="relative h-[500px] md:h-[600px] overflow-hidden bg-gradient-hero">
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-700 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${slide.image})`,
-              filter: "brightness(0.7)",
-            }}
-          />
-          <div className="relative h-full flex items-center justify-center text-center px-4">
-            <div className="max-w-4xl animate-fade-in">
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                {slide.title}
-              </h2>
-              <p className="text-xl md:text-2xl text-white/90">
-                {slide.subtitle}
-              </p>
-            </div>
-          </div>
-        </div>
-      ))}
+    <div className="relative w-full aspect-[1920/412] overflow-hidden bg-black">
+      {slides.map((slide, index) => {
+        const isActive = index === currentSlide;
 
+        const SlideContent = (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-700 ${
+              isActive ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <div
+              className="absolute inset-0 bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url(${slide.image})`,
+                backgroundSize: "contain",
+              }}
+            />
+          </div>
+        );
+
+        // Se tiver link, envolve o slide em <a>
+        return slide.link ? (
+          <a
+            key={slide.id}
+            href={slide.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full h-full"
+          >
+            {SlideContent}
+          </a>
+        ) : (
+          SlideContent
+        );
+      })}
+
+      {/* Botões de navegação */}
       <Button
         variant="ghost"
         size="icon"
@@ -87,7 +89,8 @@ const HeroCarousel = () => {
         <ChevronRight size={32} />
       </Button>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
+      {/* Indicadores */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
         {slides.map((_, index) => (
           <button
             key={index}
