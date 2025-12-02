@@ -24,15 +24,6 @@ const AssistirAoVivo = () => {
               />
             </div>
 
-            {/* SOBREPOSIÇÃO DE STATUS AO VIVO */}
-            <div className="absolute top-4 left-4 z-10">
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                <span className="text-white font-semibold tracking-wide">
-                  AO VIVO
-                </span>
-              </div>
-            </div>
           </Card>
 
          

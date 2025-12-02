@@ -21,6 +21,7 @@ const Header = () => {
   }, []);
 
   const isActive = (path: string) => location.pathname === path;
+  const isLivePage = location.pathname === "/ouvir-ao-vivo" || location.pathname === "/assistir-ao-vivo";
 
   return (
     <header
@@ -33,12 +34,14 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
+            {isLivePage && (
+              <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
+            )}
             <img
               src={logoHeader}
               alt="Logo Maravilha FM"
               className="h-5 md:h-5 w-auto"
             />
-
           </Link>
           <nav className="hidden md:flex items-center space-x-2">
             <Link to="/">
