@@ -21,7 +21,7 @@ const Header = () => {
   }, []);
 
   const isActive = (path: string) => location.pathname === path;
-  const isLivePage = location.pathname === "/ouvir-ao-vivo" || location.pathname === "/assistir-ao-vivo";
+  const isLivePage = location.pathname === "/assistir-ao-vivo";
 
   return (
     <header
