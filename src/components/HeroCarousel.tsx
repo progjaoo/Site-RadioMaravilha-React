@@ -13,6 +13,7 @@ const slides = [
   {
     id: 2,
     image: banner1,
+    link: "https://89maravilhafm.com/sorteio/",
   },
 ];
 
