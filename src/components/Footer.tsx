@@ -14,7 +14,7 @@ const Footer = () => {
           </div>
 
           <div className="text-center text-sm opacity-90">
-            <p>© 2024 Rádio 89.1 Maravilha FM. Todos os direitos reservados.</p>
+            <p>© 2026 Rádio 89.1 Maravilha FM. Todos os direitos reservados.</p>
           </div>
         </div>
       </div>
