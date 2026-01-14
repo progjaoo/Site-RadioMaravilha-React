@@ -22,7 +22,6 @@ const Footer = () => {
             <a
               href={whatsappLink}
               target="_blank"><p className="font-semibold hover:underline">Whatsapp: (31) 99998-2089</p></a>
-            
           </div>
 
           <div className="text-center text-sm opacity-90">
