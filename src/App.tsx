@@ -36,7 +36,6 @@ const Layout = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -50,7 +49,6 @@ const App = () => (
           </Route>
         </Routes>
       </TooltipProvider>
-    </ThemeProvider>
   </QueryClientProvider>
 );
 
