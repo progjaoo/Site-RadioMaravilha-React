@@ -74,14 +74,14 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Button
+            {/* <Button
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="text-primary hover:text-primary-light"
             >
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </Button>
+            </Button> */}
             <a
               href="https://www.youtube.com/@radio89maravilha"
               target="_blank"

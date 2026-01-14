@@ -8,13 +8,8 @@ const slides = [
   {
     id: 1,
     image: banner2,
-    link: "https://89maravilhafm.com/sorteio/",
-  },
-  {
-    id: 2,
-    image: banner1,
-    link: "https://89maravilhafm.com/sorteio/",
-  },
+
+  }
 ];
 
 const HeroCarousel = () => {

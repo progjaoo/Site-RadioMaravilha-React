@@ -22,7 +22,7 @@ const Home = () => {
         </section>
 
         {/* Promotional Banner */}
-        <section className="py-8 md:py-12">
+        {/* <section className="py-8 md:py-12">
           <div className="container mx-auto px-4">
             <a target="_blank" href="https://89maravilhafm.com/sorteio/">
                 <img
@@ -33,7 +33,7 @@ const Home = () => {
                 />
             </a> 
           </div>
-        </section>
+        </section> */}
 
         {/* About Section */}
         <section className="py-12 md:py-20">

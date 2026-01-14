@@ -79,7 +79,7 @@ useEffect(() => {
 
           <Card className="p-8 md:p-12 shadow-card animate-fade-in">
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-foreground">
-              Minas Gerais 89.1 FM
+              Tocando Agora
             </h1>
 
             <div className="space-y-8">
