@@ -1,5 +1,6 @@
 import logoWhite from "@/assets/logoFooter.png";
 
+const whatsappLink = `https://wa.me/5531999982089`;
 const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground py-5">
@@ -8,9 +9,20 @@ const Footer = () => {
           <img src={logoWhite} alt="89.1 Maravilha FM" className="h-20 w-15" />
           
           <div className="text-center space-y-2">
-            <p className="font-semibold">Rua Fernandes Tourinho, 487 - Savassi</p>
-            <p className="font-semibold">Belo Horizonte/MG | Cep 30.112-000</p>
-            <p className="font-semibold">Whatsapp: (31) 99998-2089</p>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://maps.app.goo.gl/RdZ72fpBRLGMhTCx8"
+              className="hover:underline"
+            >
+              <p className="text-sm md:text-base leading-snug font-semibold">
+                Rua Fernandes Tourinho, 487 - Savassi - Belo Horizonte/MG | Cep 30.112-000
+              </p>
+            </a>
+            <a
+              href={whatsappLink}
+              target="_blank"><p className="font-semibold hover:underline">Whatsapp: (31) 99998-2089</p></a>
+            
           </div>
 
           <div className="text-center text-sm opacity-90">
