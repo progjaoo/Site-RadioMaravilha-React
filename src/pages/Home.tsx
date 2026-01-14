@@ -4,8 +4,10 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import HeroCarousel from "@/components/HeroCarousel";
 import videoStudio from "@/assets/videoStudio.mp4";
 import appMockup from "@/assets/anuncioApp.png";
-import bannerAnuncio from '@/assets/anuncio.png'
+import anuncieaqui from '@/assets/anuncieaqui.png'
 
+const whatsappNumber = "5531999982089";
+const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
 const Home = () => {
 
@@ -22,18 +24,20 @@ const Home = () => {
         </section>
 
         {/* Promotional Banner */}
-        {/* <section className="py-8 md:py-12">
+        <section className="py-8 md:py-12">
           <div className="container mx-auto px-4">
-            <a target="_blank" href="https://89maravilhafm.com/sorteio/">
+            <a
+              href={whatsappLink}
+              target="_blank">
                 <img
-                  src={bannerAnuncio}
+                  src={anuncieaqui}
                   alt="App Maravilha FM"
                   className="w-1-- md:w-100 h-auto"
                   
                 />
             </a> 
           </div>
-        </section> */}
+        </section>
 
         {/* About Section */}
         <section className="py-12 md:py-20">

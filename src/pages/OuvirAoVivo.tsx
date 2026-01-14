@@ -8,6 +8,10 @@ import { Slider } from "@/components/ui/slider";
 import bannerAnuncio from "@/assets/anuncio.png";
 import capaAlbum from "@/assets/capaAlbum.png";
 import { radioService } from "@/lib/radioService";
+import anuncieaqui from '@/assets/anuncieaqui.png'
+
+const whatsappNumber = "5531999982089";
+const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
 const API_URL = "https://radiovox.conectastm.com/api-json/Vkc1d1FrNUZNVUpRVkRBOStS";
 
@@ -75,6 +79,21 @@ useEffect(() => {
       <WhatsAppButton />
 
       <main className="pt-32 pb-12 min-h-screen">
+        {/* Promotional Banner */}
+        <section className="py-8 md:py-12 mt-[-80px]">
+          <div className="container mx-auto px-4">
+            <a
+              href={whatsappLink}
+              target="_blank">
+                <img
+                  src={anuncieaqui}
+                  alt="App Maravilha FM"
+                  className="w-1-- md:w-100 h-auto"
+                  
+                />
+            </a> 
+          </div>
+        </section>
         <div className="container mx-auto px-10 max-w-4x1">
 
           <Card className="p-8 md:p-12 shadow-card animate-fade-in">
